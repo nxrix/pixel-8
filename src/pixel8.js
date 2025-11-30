@@ -530,4 +530,32 @@ class Pixel8 {
     }
   }
 
+  print_s(t,x,y,c,s) {
+    x |= 0;
+    y |= 0;
+    s |= 0;
+    t = t.toString();
+    const ls = t.split("\n");
+    for (let ly=0;ly<ls.length;ly++) {
+      const l = ls[ly], cy = y+ly*5*s;
+      for (let i=0;i<l.length;i++) {
+        const ch = l.charCodeAt(i);
+        if (ch<32||ch>127) continue;
+        const o = (ch-32)*4;
+        for (let r=0;r<4;r++) {
+          const b = Pixel8.font_buffer[o + r];
+          for (let k=0;k<3;k++) {
+            if (b&(1<<(2-k))) {
+              for (let dx=0;dx<s;dx++) {
+                for (let dy=0;dy<s;dy++) {
+                  this._pset(x+i*4*s+k*s+dx,cy+r*s+dy,c);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
