@@ -1,8 +1,7 @@
-<body>
-  <img id="font" src="font.png" style="background-color: #000; image-rendering: pixelated;">
-  <hr>
-  <textarea id="output"></textarea>
-</body>
+<h1>font to array</h1>
+<img id="font" src="./font.png" style="background-color: #000; image-rendering: pixelated; height: 32px;">
+<hr>
+<textarea id="output"></textarea>
 
 <script>
 
@@ -37,7 +36,7 @@ font.onload = () => {
       parseInt(b.slice(w*3+x0,w*3+x0+3),2)
     }`);
   }
-  output.value = `new Uint8Array([\n    ${o.join(",\n    ")}\n]);`;
+  output.value = `new Uint8Array([\n    ${o.join(",\n    ")}\n  ]);`;
 };
 
 </script>

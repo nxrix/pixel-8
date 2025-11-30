@@ -1,0 +1,89 @@
+<h1>Img2Str</h1>
+<input type="file" id="input">
+<br>
+<br>
+<img id="output">
+<br>
+<button id="copy">Copy</button>
+
+<script src="./pixel8.js"></script>
+<script>
+
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+const rgb = ([r,g,b]) => {
+  let m = Infinity;
+  let n = -1;
+  for (let i = 0; i < Pixel8.palette.length; i++) {
+    const c = Pixel8.palette[i];
+    const d = Math.sqrt(
+      (r - c[0]) ** 2 + 
+      (g - c[1]) ** 2 +
+      (b - c[2]) ** 2
+    );
+    if (d<m) {
+      m = d;
+      n = i;
+    }
+  }
+  return n;
+}
+
+const get_data = (img) => {
+  canvas.width = img.width;
+  canvas.height = img.height;
+  ctx.drawImage(img,0,0);
+  const image_data = ctx.getImageData(0,0,img.width,img.height);
+  const data = image_data.data;
+  let result = "";
+  for (let i = 0; i < data.length; i += 4) {
+    /*const p = i/4;
+    const x = p % canvas.width;
+    const y = Math.floor(p / canvas.width);
+    const b = Pixel8.bayer4x4[x%4][y%4]/32;
+    const color = [
+      Math.floor(data[i  ]/2+b)*2,
+      Math.floor(data[i+1]/2+b)*2,
+      Math.floor(data[i+2]/2+b)*2
+    ];*/
+    const n = rgb([data[i],data[i+1],data[i+2]]);
+    if (data[i+3]>0) {
+      const c = Pixel8.palette[n];
+      data[i  ] = c[0];
+      data[i+1] = c[1];
+      data[i+2] = c[2];
+      data[i+3] =  255;
+      result += n.toString(33);
+    } else {
+      result += "w";
+    }
+  }
+  ctx.putImageData(image_data,0,0);
+  output.src = canvas.toDataURL();
+  return result;
+}
+
+const copy_text = (str) => {
+  const el = document.createElement("textarea");
+  el.value = str;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+  el.remove();
+}
+
+input.addEventListener("change",()=>{
+  const file = input.files[0];
+  const img = new Image();
+  img.onload = () => {
+    const d = get_data(img);
+    copy.onclick = () => {
+      copy_text(`${img.width},${img.height},${d}`);
+    }
+  };
+  img.src = URL.createObjectURL(file);
+});
+
+</script>
