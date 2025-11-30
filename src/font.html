@@ -1,22 +1,24 @@
 <h1>font to array</h1>
+
 <img id="font" src="./font.png" style="background-color: #1d1826; image-rendering: pixelated; height: 8px;">
 <hr>
 <textarea id="output" cols="32" rows="16"></textarea>
 
 <script>
 
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
 font.onload = () => {
   const w = font.width;
   const h = font.height;
-  const canvas = document.createElement("canvas");
   canvas.width = w;
   canvas.height = h;
-  const ctx = canvas.getContext("2d");
   ctx.drawImage(font,0,0);
   const data = ctx.getImageData(0,0,w,h).data;
-  const b = [];
+  let b = "";
   for (let i=0;i<data.length;i+=4) {
-    b.push(data[i+3]>0?1:0);
+    b += data[i+3]>0?"1":"0";
   }
   let o = [];
   for (let g=0;g<w/4;g++) {
