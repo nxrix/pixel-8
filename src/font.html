@@ -10,8 +10,8 @@ const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
 
 font.onload = () => {
-  const w = font.width;
-  const h = font.height;
+  const w = font.naturalWidth;
+  const h = font.naturalHeight;
   canvas.width = w;
   canvas.height = h;
   ctx.drawImage(font,0,0);
