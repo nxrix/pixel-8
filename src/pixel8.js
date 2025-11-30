@@ -530,7 +530,7 @@ class Pixel8 {
       }
     }
   }*/
-  print(t,x,y,c){
+  print(t,x,y,c) {
     x |= 0;
     y |= 0;
     t = t.toString();
@@ -542,7 +542,7 @@ class Pixel8 {
         if (ch<32||ch>127) continue;
         const o = (ch-32)*4;
         for (let r=0;r<4;r++) {
-          const b=font[o+r];
+          const b = Pixel8.font_buffer[o+r];
           for (let k=0;k<3;k++) {
             if (b&(1<<(2-k))) this._pset(x+i*4+k,cy+r,c);
           }
