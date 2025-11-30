@@ -509,27 +509,6 @@ class Pixel8 {
     }
   }
 
-  /*print(t,x,y,c) {
-    x |= 0;
-    y |= 0;
-    t = t.toString();
-    const lines = t.split("\n");
-    for (let l=0;l<lines.length;l++) {
-      const line = lines[l];
-      const cy = y+l*5;
-      for (let i=0;i<line.length;i++) {
-        const code = line.charCodeAt(i);
-        const cx = x+i*4;
-        for (let j=0;j<5;j++) {
-          for (let k=0;k<4;k++) {
-            if (Pixel8.font_buffer[(code-32)*4+j*380+k]==1) {
-              this._pset(cx+k,cy+j,c);
-            }
-          }
-        }
-      }
-    }
-  }*/
   print(t,x,y,c) {
     x |= 0;
     y |= 0;

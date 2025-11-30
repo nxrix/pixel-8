@@ -1,0 +1,43 @@
+<body>
+  <img id="font" src="font.png">
+  <br>
+  <textarea id="output"></textarea>
+</body>
+
+<script>
+
+font.onload = () => {
+  const w = font.width;
+  const h = font.height;
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(font,0,0);
+  const data = ctx.getImageData(0,0,w,h).data;
+  const b = [];
+  for (let i=0;i<data.length;i+=4) {
+    b.push(data[i+3]>0?1:0);
+  }
+  let o = [];
+  for (let g=0;g<w/4;g++) {
+    const x0 = g*4;
+    /*out.push(`  // ${String.fromCharCode(g+32)}`);
+    for (let r = 0; r < 4; r++) {
+      o.push(`  0b${b.slice(r*ws+x0,r*ws+x0+3)}`);
+      //o.push(`  ${parseInt(b.slice(r*ws+x0,r*ws+x0+3),2)}`);
+    }*/
+    o.push(`${
+      parseInt(b.slice(    x0,    x0+3),2)
+    },${
+      parseInt(b.slice(w  +x0,w  +x0+3),2)
+    },${
+      parseInt(b.slice(w*2+x0,w*2+x0+3),2)
+    },${
+      parseInt(b.slice(w*3+x0,w*3+x0+3),2)
+    }`);
+  }
+  output.value = `new Uint8Array([\n    ${o.join(",\n    ")}\n]);`;
+};
+
+</script>
