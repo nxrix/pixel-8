@@ -206,7 +206,7 @@ class Pixel8 {
 
   fillp(p,c) {
     this.pattern = p&0xffff;
-    this.pattern_color = c|0;//c&31;
+    this.pattern_color = c|0;
   }
 
   palt(c,t) {
