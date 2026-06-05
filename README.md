@@ -1,4 +1,4 @@
-<img src="./icon.png" alt="Pixel-8" style="width:205px">
+<img src="./src/icon.png" alt="Pixel-8" style="width:205px">
 
 A web based fantasy console and JavaScript library
 
