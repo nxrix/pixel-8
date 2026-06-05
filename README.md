@@ -14,12 +14,13 @@ Then you need a canvas to draw the screen buffer onto it
 const px8 = new Pixel8(128,128);
 
 const canvas = document.createElement("canvas");
-const ctx = canvas.getContext("2d");
-const img = ctx.createImageData(px8.w,px8.h);
-const img_data = img.data;
+canvas.style.imageRendering = "pixelated";
 canvas.width = px8.w;
 canvas.height = px8.h;
 document.body.appendChild(canvas);
+const ctx = canvas.getContext("2d");
+const img = ctx.createImageData(px8.w,px8.h);
+const img_data = img.data;
 
 let t = 0;
 const update = () => {
@@ -41,7 +42,6 @@ const update = () => {
 };
 update();
 ```
-To remove the blurry effect of canvas add `image-rendering: pixelated;` CSS property to it.
 
 ## API
 
