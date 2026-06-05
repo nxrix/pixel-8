@@ -9,7 +9,7 @@ First you need to include the script
 <script src="https://nxrix.github.io/pixel-8/src/pixel8.js"></script>
 ```
 
-Then you need a canvas to draw the screen buffer onto it
+Then you need to create a canvas to draw the screen buffer onto it
 ```js
 const px8 = new Pixel8(128,128);
 
