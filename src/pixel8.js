@@ -1,6 +1,4 @@
-/**
- * @copyright (c) 2025 Nxrix. All rights reserved.
- */
+// Copyright nxrix, 2023-2026
 
 "use strict";
 
@@ -141,7 +139,7 @@ class Pixel8 {
     this.w1 = w-1;
     this.h1 = h-1;
     this.buffer = new Uint8Array(w*h);
-    this.palette_mask = new Uint8Array(32);
+    this.palette_mask = new Uint8Array(255);
     this.pattern = 0;
     this.pattern_color = 0;
     this.camera_x = 0;

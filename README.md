@@ -1,6 +1,6 @@
 <img src="./icon.png" alt="Pixel-8" style="width:205px">
 
-A web based fantasy console and JavaScript library for creating small things.
+A web based fantasy console and JavaScript library
 
 ## Usage
 
@@ -71,6 +71,6 @@ The drawing API is pretty similar to Pico8
 
 `circfill(x,y,r,c)`: Draw a filled circle with radius `r` at `[x,y]` with color `c`
 
-`sspr(s,x,y,w,h)`: Draw sprite `s` at `[x,y]` with width `w` and height `h`. The sprite should be exported using [PNG to sprite tool](./)
+`sspr(s,x,y,w,h)`: Draw sprite `s` at `[x,y]` with width `w` and height `h`. The sprite should be exported using [PNG to sprite tool](./src/img2str.html)
 
 `print(t,x,y,c)`: Print string `t` at `[x,y]` with color `c`
