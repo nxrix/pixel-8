@@ -3,6 +3,7 @@
 A web based fantasy console and JavaScript library
 
 <hr>
+
 # Usage
 
 First you need to include the script
@@ -45,6 +46,7 @@ update();
 ```
 
 <hr>
+
 # API
 
 The drawing API is pretty similar to Pico8
